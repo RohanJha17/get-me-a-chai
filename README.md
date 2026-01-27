@@ -1,9 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ☕ Get Me A Chai
 
-## Getting Started
+**Get Me A Chai** is a creator-support platform inspired by *Buy Me a Coffee*, *Patreon* where fans can support creators by buying them a chai ☕.  
+Creators can set up profiles, receive payments, and connect with their supporters in a simple and friendly way.
 
-First, run the development server:
+Built with **Next.js**, modern UI practices, and a scalable architecture.
 
+---
+
+### 🖥️ App Interface
+![App Interface](./public/site.png)
+
+## ✨ Key Features
+
+### 👤 Creator Experience
+- Create and manage a public creator profile
+- Upload profile picture & cover image
+- Set bio and support message
+- View supporters and contributions
+
+### ☕ Supporter Experience
+- Support creators with one-time payments
+- Simple and fast checkout flow
+- Optional message with each support
+
+### 🧠 Platform Features
+- Secure authentication
+- Protected dashboard routes
+- Responsive UI (mobile + desktop)
+- Error handling & loading states
+- SEO-friendly App Router structure
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js (App Router)
+- **Frontend:** React, Tailwind CSS
+- **Backend:** Next.js API Routes
+- **Database:** MongoDB
+- **Authentication:** NextAuth (if applicable)
+- **Payments:** Razorpay / Stripe
+
+---
+
+## 📂 Project Structure
+
+get-me-a-chai/
+├── app/ # App Router pages & layouts
+├── components/ # Reusable UI components
+├── lib/ # Utilities & helpers
+├── models/ # MongoDB models
+├── public/ # Static assets
+├── styles/ # Global styles
+├── .env.local # Environment variables
+└── README.md
+
+---
+
+## 🧑‍💻 Getting Started
+
+### 1️⃣ Clone the repository
+
+Then, install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+Run the development server:
 ```bash
 npm run dev
 # or
@@ -14,23 +82,28 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Create a .env.local file in the root and add:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+AUTH_ID=app authentication id
+AUTH_SECRET=secret
 
-## Learn More
+RAZORPAY_KEY_ID=rzr_test_xxxxxxxxxx
+RAZORPAY_KEY_SECRET=secret
+NEXT_PUBLIC_RAZORPAY_KEY_ID=rzr_test_xxxxxxxxxx
 
-To learn more about Next.js, take a look at the following resources:
+NEXT_PUBLIC_URL=http://localhost:3000
+NEXTAUTH_URL=http://localhost:3000
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+MONGODB_URI=your_mongodb_connection_string
+NEXTAUTH_SECRET=your_secret_key
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+PAYMENT_GATEWAY_KEY=your_key
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# 🧑‍💻 Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built by [Rohan Jha]
+💼 Full-Stack Developer
+☕ Fueled by chai and clean code
