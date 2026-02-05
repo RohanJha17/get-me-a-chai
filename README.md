@@ -85,7 +85,7 @@ bun dev
 ## Environment Variables
 
 Create a .env.local file in the root and add:
-
+```
 AUTH_ID=app authentication id
 AUTH_SECRET=secret
 
@@ -100,7 +100,7 @@ MONGODB_URI=your_mongodb_connection_string
 NEXTAUTH_SECRET=your_secret_key
 
 PAYMENT_GATEWAY_KEY=your_key
-
+```
 
 # 🧑‍💻 Author
 
