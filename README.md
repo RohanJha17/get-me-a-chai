@@ -1,9 +1,9 @@
 # ☕ BrewFund
 
-**BrewFund** is a creator-support platform where fans can support creators by buying them a brew ☕.  
-Creators can set up profiles, receive payments, and connect with their supporters in a simple and friendly way.
+**BrewFund** is a modern creator-support platform where fans can support their favorite creators by buying them a brew ☕.  
+Creators can set up customizable profiles, receive secure payments, and showcase their top supporters in a simple and friendly way.
 
-Built with **Next.js**, modern UI practices, and a scalable architecture.
+Built with **Next.js (App Router)**, **React 19**, and a scalable architecture.
 
 ---
 
@@ -13,55 +13,54 @@ Built with **Next.js**, modern UI practices, and a scalable architecture.
 ## ✨ Key Features
 
 ### 👤 Creator Experience
-- Create and manage a public creator profile
-- Upload profile picture & cover image
-- Set bio and support message
-- View supporters and contributions
+- **Dynamic Creator Profiles:** Every creator gets a personalized route (e.g., `/[username]`) acting as their public portfolio.
+- **Profile Customization:** Upload profile pictures & cover images, and set custom display names directly from a protected Dashboard.
+- **Supporter Leaderboard:** Automatically displays a list of the top 10 most recent successful donations on your profile.
 
 ### ☕ Supporter Experience
-- Support creators with one-time payments
-- Simple and fast checkout flow
-- Optional message with each support
+- **Seamless Support:** Support creators with one-time payments through a fast, integrated checkout flow.
+- **Personalized Messages:** Leave an optional name and supportive message with each contribution.
 
-### 🧠 Platform Features
-- Secure authentication
-- Protected dashboard routes
-- Responsive UI (mobile + desktop)
-- Error handling & loading states
-- SEO-friendly App Router structure
+### 🧠 Platform Architecture
+- **OAuth Authentication:** Secure, passwordless login using GitHub and Google (via NextAuth.js).
+- **Payment Verification:** Webhook-based server-side payment signature verification using Razorpay SDK to ensure complete transaction security.
+- **Data Integrity:** Intelligent username updates that automatically migrate all historical payments to the new username.
+- **Server Actions:** Utilizes Next.js Server Actions for seamless client-to-server database mutations without traditional API boilerplate.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Framework:** Next.js (App Router)
-- **Frontend:** React, Tailwind CSS
-- **Backend:** Next.js API Routes
+- **Framework:** Next.js v16 (App Router)
+- **Frontend Library:** React v19
+- **Styling:** Tailwind CSS v4
 - **Database:** MongoDB
-- **Authentication:** NextAuth (if applicable)
-- **Payments:** Razorpay / Stripe
+- **ORM / Data Modeling:** Mongoose v9
+- **Authentication:** NextAuth.js v4 (GitHub & Google Providers)
+- **Payment Gateway:** Razorpay Node SDK
+- **Notifications:** React Toastify
 
 ---
 
 ## 📂 Project Structure
 
+```text
 brewfund/
-├── app/ # App Router pages & layouts
-├── components/ # Reusable UI components
-├── lib/ # Utilities & helpers
-├── models/ # MongoDB models
-├── public/ # Static assets
-├── styles/ # Global styles
-├── .env.local # Environment variables
+├── actions/         # Next.js Server Actions (useractions.js)
+├── app/             # App Router pages, layouts, and API routes (Auth & Razorpay Webhooks)
+├── components/      # Reusable React components (Navbar, Footer, etc.)
+├── db/              # Database connection utilities
+├── models/          # MongoDB schemas (User, Payment)
+├── public/          # Static assets (images, logos)
+├── .env.local       # Environment variables
 └── README.md
+```
 
 ---
 
 ## 🧑‍💻 Getting Started
 
-### 1️⃣ Clone the repository
-
-Then, install dependencies:
+### 1️⃣ Clone the repository & Install Dependencies
 
 ```bash
 npm install
@@ -71,39 +70,50 @@ yarn install
 pnpm install
 ```
 
-Run the development server:
+### 2️⃣ Environment Variables Setup
+
+Create a `.env.local` file in the root directory and add the following keys:
+
+```env
+# GitHub OAuth
+GITHUB_ID=your_github_client_id
+GITHUB_SECRET=your_github_client_secret
+
+# Google OAuth (Optional, if configured)
+GOOGLE_ID=your_google_client_id
+GOOGLE_SECRET=your_google_client_secret
+
+# Razorpay Keys
+RAZORPAY_KEY_ID=your_razorpay_key_id
+RAZORPAY_KEY_SECRET=your_razorpay_key_secret
+NEXT_PUBLIC_RAZORPAY_KEY_ID=your_razorpay_key_id
+CURRENCY="₹"
+
+# App URLs (Change to your deployed URL in production)
+NEXT_PUBLIC_URL=http://localhost:3000
+NEXTAUTH_URL=http://localhost:3000
+
+# NextAuth Secret & Database
+NEXTAUTH_SECRET=your_strong_random_secret_key
+MONGO_URI=your_mongodb_connection_string
+```
+
+### 3️⃣ Run the development server
+
 ```bash
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-## Environment Variables
+Your application will be available at [http://localhost:3000](http://localhost:3000).
 
-Create a .env.local file in the root and add:
-```
-AUTH_ID=app authentication id
-AUTH_SECRET=secret
+---
 
-RAZORPAY_KEY_ID=rzr_test_xxxxxxxxxx
-RAZORPAY_KEY_SECRET=secret
-NEXT_PUBLIC_RAZORPAY_KEY_ID=rzr_test_xxxxxxxxxx
+## 🧑‍💻 Author
 
-NEXT_PUBLIC_URL=http://localhost:3000
-NEXTAUTH_URL=http://localhost:3000
-
-MONGODB_URI=your_mongodb_connection_string
-NEXTAUTH_SECRET=your_secret_key
-
-PAYMENT_GATEWAY_KEY=your_key
-```
-
-# 🧑‍💻 Author
-
-Built by [Rohan Jha]
+Built by **[Rohan Jha]**
 💼 Full-Stack Developer
 ☕ Fueled by brews and clean code
