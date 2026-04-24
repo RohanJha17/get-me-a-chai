@@ -10,5 +10,5 @@ const DashboardPage = () => {
 export default DashboardPage
 
 export const metadata = {
-    title: "Dashboard - Get Me A Chai",
+    title: "BrewFund | Dashboard",
   }

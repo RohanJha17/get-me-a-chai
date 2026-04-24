@@ -1,6 +1,6 @@
-# ☕ Get Me A Chai
+# ☕ BrewFund
 
-**Get Me A Chai** is a creator-support platform inspired by *Buy Me a Coffee*, *Patreon* where fans can support creators by buying them a chai ☕.  
+**BrewFund** is a creator-support platform where fans can support creators by buying them a brew ☕.  
 Creators can set up profiles, receive payments, and connect with their supporters in a simple and friendly way.
 
 Built with **Next.js**, modern UI practices, and a scalable architecture.
@@ -45,7 +45,7 @@ Built with **Next.js**, modern UI practices, and a scalable architecture.
 
 ## 📂 Project Structure
 
-get-me-a-chai/
+brewfund/
 ├── app/ # App Router pages & layouts
 ├── components/ # Reusable UI components
 ├── lib/ # Utilities & helpers
@@ -106,4 +106,4 @@ PAYMENT_GATEWAY_KEY=your_key
 
 Built by [Rohan Jha]
 💼 Full-Stack Developer
-☕ Fueled by chai and clean code
+☕ Fueled by brews and clean code

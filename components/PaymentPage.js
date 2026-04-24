@@ -4,13 +4,18 @@ import React, { useEffect, useState } from "react";
 import Script from "next/script";
 import { useSession } from "next-auth/react";
 import { fetchuser, fetchpayments, initiate } from "@/actions/useractions";
+import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { notFound } from "next/navigation";
 
 const PaymentPage = ({ username }) => {
-  // const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+
 
   const [paymentform, setPaymentform] = useState({
     name: "",
@@ -20,25 +25,23 @@ const PaymentPage = ({ username }) => {
 
   const [currentUser, setcurrentUser] = useState({});
   const [payments, setPayments] = useState([]);
-
-  const searchParams = useSearchParams();
-  const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getData();
   }, []);
 
   useEffect(() => {
-  if (
-    searchParams.get("paymentdone") === "true" &&
-    !toast.isActive("payment-success")
-  ) {
-    toast.success("Thanks for your donation!", {
-      toastId: "payment-success",
-      onClose: () => router.replace(`/${username}`),
-    });
-  }
-}, [searchParams, router, username]);
+    if (
+      searchParams.get("paymentdone") === "true" &&
+      !toast.isActive("payment-success")
+    ) {
+      toast.success("Thanks for your donation!", {
+        toastId: "payment-success",
+        onClose: () => router.replace(`/${username}`),
+      });
+    }
+  }, [searchParams, router, username]);
 
 
   const handleChange = (e) => {
@@ -54,26 +57,31 @@ const PaymentPage = ({ username }) => {
 
     let dbpayments = await fetchpayments(username);
     setPayments(dbpayments);
+    setLoading(false);
   };
 
   const pay = async (amount) => {
     // Get the order Id
     let a = await initiate(amount, username, paymentform);
+
+    if (a.error) {
+      toast.error(a.error);
+      return;
+    }
+
     let orderId = a.orderId;
-
-
     var options = {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
       amount: amount,
       currency: "INR",
-      name: "Get Me A Chai",
+      name: "BrewFund",
       description: "Test Transaction",
       image: "https://example.com/your_logo",
       order_id: orderId,
       callback_url: `${process.env.NEXT_PUBLIC_URL}/api/razorpay`,
       prefill: {
-        name: "Gaurav Kumar",
-        email: "gaurav.kumar@example.com",
+        name: paymentform.name,
+        email: "rohan.kumar@example.com",
         contact: "9000090000",
       },
       notes: {
@@ -87,6 +95,20 @@ const PaymentPage = ({ username }) => {
     var rzp1 = new Razorpay(options);
     rzp1.open();
   };
+
+  if (status === "loading" || (status === "authenticated" && loading)) {
+    return <p className="text-center mt-20 text-white">Loading...</p>
+  }
+
+  if (status === "unauthenticated") {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] text-white mt-20">
+        <h2 className="text-3xl font-bold mb-4">You have to login first</h2>
+        <p className="text-slate-400 mb-6">Please log in to view this creator's page and make a donation.</p>
+        <button onClick={() => router.push('/login')} className="text-white bg-linear-to-br from-purple-600 to-blue-500 hover:bg-linear-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Go to Login</button>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -106,16 +128,18 @@ const PaymentPage = ({ username }) => {
 
       <div className="cover w-full relative mt-18">
         <img
-          className="object-cover w-full h-48 md:h-87.5 shadow-blue-700 shadow-sm"
-          src={currentUser.coverpic}
-          alt=""
+          className="w-full h-100 shadow-blue-700 shadow-sm"
+          src={currentUser.coverpic || "/coverpic.png"}
+          alt="Cover Image"
+          onError={(e) => { e.currentTarget.src = "/coverpic.png"; e.currentTarget.onerror = null; }}
         />
 
-        <div className="absolute -bottom-20 right-[33%] md:right-[46%] border-white overflow-hidden border-2 rounded-full size-36">
+        <div className="absolute -bottom-20 right-[33%] md:right-[46%] border-white overflow-hidden border-2 rounded-full size-36 bg-white">
           <img
             className="rounded-full object-cover size-36"
-            src={currentUser.profilepic}
-            alt=""
+            src={currentUser.profilepic || "/avatar.gif"}
+            alt="Profile Image"
+            onError={(e) => { e.currentTarget.src = "/avatar.gif"; e.currentTarget.onerror = null; }}
           />
         </div>
       </div>
@@ -124,7 +148,7 @@ const PaymentPage = ({ username }) => {
         <div className="font-bold text-lg">@{username}</div>
 
         <div className="text-slate-400">
-          Lets help {username} get a chai!
+          Lets help {username} fund their next brew!
         </div>
 
         <div className="text-slate-400">
@@ -142,7 +166,7 @@ const PaymentPage = ({ username }) => {
 
               {payments.map((p, i) => (
                 <li key={i} className="my-4 flex gap-2 items-center">
-                  <img width={33} src="avatar.gif" alt="user avatar" />
+                  <Image width={33} height={33} src="/avatar.gif" alt="user avatar" />
                   <span>
                     {p.name} donated{" "}
                     <span className="font-bold">₹{p.amount}</span> with a
@@ -194,20 +218,20 @@ const PaymentPage = ({ username }) => {
                   paymentform.message.length < 4 ||
                   paymentform.amount.length < 1
                 }
-                className="text-white bg-linear-to-br from-purple-900 to-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 disabled:bg-slate-600"
+                className="text-white bg-linear-to-br from-purple-900 to-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 disabled:bg-slate-600 cursor-pointer disabled:cursor-not-allowed"
               >
                 Pay
               </button>
             </div>
 
             <div className="flex flex-col md:flex-row gap-2 mt-5">
-              <button className="bg-slate-800 p-3 rounded-lg" onClick={() => pay(1000)}>
+              <button className="bg-slate-800 p-3 rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-600 disabled:text-slate-400" disabled={paymentform.name?.length < 3 || paymentform.message?.length < 4} onClick={() => pay(1000)}>
                 Pay ₹10
               </button>
-              <button className="bg-slate-800 p-3 rounded-lg" onClick={() => pay(2000)}>
+              <button className="bg-slate-800 p-3 rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-600 disabled:text-slate-400" disabled={paymentform.name?.length < 3 || paymentform.message?.length < 4} onClick={() => pay(2000)}>
                 Pay ₹20
               </button>
-              <button className="bg-slate-800 p-3 rounded-lg" onClick={() => pay(3000)}>
+              <button className="bg-slate-800 p-3 rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-600 disabled:text-slate-400" disabled={paymentform.name?.length < 3 || paymentform.message?.length < 4} onClick={() => pay(3000)}>
                 Pay ₹30
               </button>
             </div>

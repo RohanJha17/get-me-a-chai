@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Get me A Chai - Find the best chai near you",
-  description: "Discover and rate the best chai spots around you with Get me A Chai.",
+  title: "BrewFund - Fund Your Creative Work",
+  description: "Discover and support creators with BrewFund.",
 };
 
 export default function RootLayout({ children }) {
