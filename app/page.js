@@ -8,7 +8,7 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center">
           <div className="text-[48px] sm:text-[72px] flex gap-2 justify-center items-center font-bold tracking-tight mt-12">
             <span className="bg-linear-to-r from-[#FFE270] to-[#FF7600] bg-clip-text text-transparent">BrewFund</span>
-            <Image className="invertImg" src="/tea.gif" alt="teaCup" width={62} height={62} />
+            <Image className="invertImg" src="/tea.gif" alt="teaCup" width={62} height={62} unoptimized />
           </div>
           <div className="flex items-center gap-4 text-[#A86422] font-medium text-[12px] sm:text-[15px] tracking-widest mt-[-10px]">
             <span className="w-6 sm:w-10 h-[1px] bg-[#A86422] opacity-70"></span>
@@ -35,7 +35,7 @@ export default function Home() {
           {/* Card 1 */}
           <div className="group flex flex-col items-center justify-center bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-8 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgb(255,255,255,0.05)] hover:border-white/20 transition-all duration-500">
             <div className="bg-white/10 rounded-full p-4 mb-4 transition-transform duration-500 group-hover:scale-110">
-              <Image className="opacity-90 grayscale group-hover:grayscale-0 transition-all duration-500" src="/man.gif" alt="" width={64} height={64} />
+              <Image className="opacity-90 grayscale group-hover:grayscale-0 transition-all duration-500" src="/man.gif" alt="" width={64} height={64} unoptimized />
             </div>
             <p className="font-bold text-[14px] text-center md:text-xl text-white tracking-wide mb-3">Fund Your Work</p>
             <p className="w-3/4 text-center text-[12px] md:text-lg text-slate-300 leading-relaxed">Your fans are available for you to help you.</p>
@@ -44,7 +44,7 @@ export default function Home() {
           {/* Card 2 */}
           <div className="group flex flex-col items-center justify-center bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-8 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgb(255,255,255,0.05)] hover:border-white/20 transition-all duration-500">
             <div className="bg-white/10 rounded-full p-4 mb-4 transition-transform duration-500 group-hover:scale-110">
-              <Image className="opacity-90 grayscale group-hover:grayscale-0 transition-all duration-500" src="/coin.gif" alt="" width={64} height={64} />
+              <Image className="opacity-90 grayscale group-hover:grayscale-0 transition-all duration-500" src="/coin.gif" alt="" width={64} height={64} unoptimized />
             </div>
             <p className="font-bold text-[14px] text-center md:text-xl text-white tracking-wide mb-3">Receive Support</p>
             <p className="w-3/4 text-center text-[12px] md:text-lg text-slate-300 leading-relaxed">Your fans are available for you to help you.</p>
@@ -53,7 +53,7 @@ export default function Home() {
           {/* Card 3 */}
           <div className="group flex flex-col items-center justify-center bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-8 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgb(255,255,255,0.05)] hover:border-white/20 transition-all duration-500">
             <div className="bg-white/10 rounded-full p-4 mb-4 transition-transform duration-500 group-hover:scale-110">
-              <Image className="opacity-90 grayscale group-hover:grayscale-0 transition-all duration-500" src="/group.gif" alt="" width={64} height={64} />
+              <Image className="opacity-90 grayscale group-hover:grayscale-0 transition-all duration-500" src="/group.gif" alt="" width={64} height={64} unoptimized />
             </div>
             <p className="font-bold text-[14px] text-center md:text-xl text-white tracking-wide mb-3">Grow Community</p>
             <p className="w-3/4 text-center text-[12px] md:text-lg text-slate-300 leading-relaxed">Your fans are available for you to help you.</p>
@@ -71,7 +71,7 @@ export default function Home() {
           {/* Card 1 */}
           <div className="group flex flex-col items-center justify-center bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-8 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgb(255,255,255,0.05)] hover:border-white/20 transition-all duration-500">
             <div className="bg-white/10 rounded-full p-4 mb-4 transition-transform duration-500 group-hover:scale-110">
-              <Image className="opacity-90 grayscale group-hover:grayscale-0 transition-all duration-500" src="/man.gif" alt="" width={64} height={64} />
+              <Image className="opacity-90 grayscale group-hover:grayscale-0 transition-all duration-500" src="/man.gif" alt="" width={64} height={64} unoptimized />
             </div>
             <p className="font-bold text-[14px] text-center md:text-xl text-white tracking-wide mb-3">Built for Creators</p>
             <p className="w-3/4 text-center text-[12px] md:text-lg text-slate-300 leading-relaxed">Get a simple, friendly way to receive support from people who love your work.</p>
@@ -80,7 +80,7 @@ export default function Home() {
           {/* Card 2 */}
           <div className="group flex flex-col items-center justify-center bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-8 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgb(255,255,255,0.05)] hover:border-white/20 transition-all duration-500">
             <div className="bg-white/10 rounded-full p-4 mb-4 transition-transform duration-500 group-hover:scale-110">
-              <Image className="opacity-90 grayscale group-hover:grayscale-0 transition-all duration-500" src="/avatar.gif" alt="" width={64} height={64} />
+              <Image className="opacity-90 grayscale group-hover:grayscale-0 transition-all duration-500" src="/avatar.gif" alt="" width={64} height={64} unoptimized />
             </div>
             <p className="font-bold text-[14px] text-center md:text-xl text-white tracking-wide mb-3">Simple Support</p>
             <p className="w-3/4 text-center text-[12px] md:text-lg text-slate-300 leading-relaxed">Fans can fund your brews as a small token of appreciation—no subscriptions, no pressure.</p>
@@ -89,7 +89,7 @@ export default function Home() {
           {/* Card 3 */}
           <div className="group flex flex-col items-center justify-center bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-8 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgb(255,255,255,0.05)] hover:border-white/20 transition-all duration-500">
             <div className="bg-white/10 rounded-full p-4 mb-4 transition-transform duration-500 group-hover:scale-110">
-              <Image className="opacity-90 grayscale group-hover:grayscale-0 transition-all duration-500" src="/group.gif" alt="" width={64} height={64} />
+              <Image className="opacity-90 grayscale group-hover:grayscale-0 transition-all duration-500" src="/group.gif" alt="" width={64} height={64} unoptimized />
             </div>
             <p className="font-bold text-[14px] text-center md:text-xl text-white tracking-wide mb-3">Grow Together</p>
             <p className="w-3/4 text-center text-[12px] md:text-lg text-slate-300 leading-relaxed">Build stronger connections with your community while doing what you love.</p>
